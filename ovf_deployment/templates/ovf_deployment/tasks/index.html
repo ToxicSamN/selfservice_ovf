@@ -1,0 +1,42 @@
+{% extends "ovf/base.html" %}
+{% load i18n static %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+{% static "ovf/css/bootstrap.min.css" %}
+{% endblock %}
+
+{% block title %}
+<title>OVA/OVF Self Service</title>
+{% endblock %}
+
+{% block usertools %}
+        <div id="user-tools">
+            {% block welcome-msg %}
+                {% trans 'Welcome ' %}
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>
+            {% endblock %}
+            {% block userlinks %}
+                {{ userlinks }}
+                {% if user.get_username %}
+                    <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                {% endif %}
+            {% endblock %}
+        </div>
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+    <button class="btn btn-primary outline" type="button" name="mybuttonname">MyButton</button>
+    <p></p>
+    <h2>{{ my_name }}</h2>
+    <h2>{{ greeting }}</h2>
+    <ul>
+        {% for item in a_list %}
+        <li> {{ item }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

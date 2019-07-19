@@ -1,0 +1,32 @@
+#user-tools {
+    float: right;
+    padding: 0;
+    margin: 0 0 0 20px;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: right;
+
+}
+
+#user-tools a, #user-tools a:link, #user-tools a:visited {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    color: #f7f7f9;
+}
+
+#user-tools a:focus, #user-tools a:hover {
+    text-decoration: none;
+    border-bottom-color: #000000;
+    color: #e3ee0f;
+}
+
+.navbar-brandby {
+  display: inline-block;
+  margin-right: 1rem;
+  font-size: 0.1px;
+}
+
+.navbar-brandby:hover, .navbar-brandby:focus {
+  text-decoration: none;
+}

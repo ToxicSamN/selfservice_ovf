@@ -1,0 +1,62 @@
+{% extends "ovf/base.html" %}
+{% load i18n static %}
+{% load staticfiles %}
+
+{% block usertools %}
+        <div id="user-tools">
+            {% block welcome-msg %}
+                {% trans 'Welcome ' %}
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>
+            {% endblock %}
+            {% block userlinks %}
+                {{ userlinks }}
+                {% if user.get_username %}
+                    <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                {% endif %}
+            {% endblock %}
+        </div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <h2>Deployment</h2>
+        <p>Form Number: {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+        {% for field in form %}
+            {{ field.error }}
+        {% endfor %}
+
+        <form action="/wizard/" method="post">
+        {% csrf_token %}
+        {{  wizard.management_form }}
+        {% if wizard.form.forms %}
+            {{ wizard.form.management_form }}
+            {% for form in wizzard.form.forms %}
+                {{ form }}
+            {% endfor %}
+        {% else %}
+            {{ wizard.form }}
+        {% endif %}
+        {% if wizard.steps.prev %}
+            <button class="btn btn-primary outline" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "start over" %}</button>
+            <button class="btn btn-primary outline" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "previous" %}</button>
+        {% endif %}
+        {% if wizard.steps.current == wizard.steps.last %}
+            <button class="btn btn-primary outline" name="submit" type="submit" value="{% trans "submit" %}">{% trans "submit" %}</button>
+        {% else %}
+            <button class="btn btn-primary outline" name="wizard_goto_step" type="submit" value="{{ wizard.steps.next }}">{% trans "next" %}</button>
+        {% endif %}
+    </form>
+
+    <p></p>
+    <h2>{{ my_name }}</h2>
+    <h2>{{ greeting }}</h2>
+    <ul>
+        {% for item in a_list %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    </div>
+{% endblock %}
