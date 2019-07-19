@@ -82,7 +82,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'formtools',
     'rest_framework',
     'accounts',
     'ovf_deployment',

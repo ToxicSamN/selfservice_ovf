@@ -30,15 +30,17 @@
 
         <form action="/wizard/" method="post">
         {% csrf_token %}
-        {{  wizard.management_form }}
-        {% if wizard.form.forms %}
-            {{ wizard.form.management_form }}
-            {% for form in wizzard.form.forms %}
-                {{ form }}
-            {% endfor %}
-        {% else %}
-            {{ wizard.form }}
-        {% endif %}
+        <table>
+            {{ wizard.management_form }}
+            {% if wizard.form.forms %}
+                {{ wizard.form.management_form }}
+                {% for form in wizard.form.forms %}
+                    {{ form }}
+                {% endfor %}
+            {% else %}
+                {{ wizard.form }}
+            {% endif %}
+        </table>
         {% if wizard.steps.prev %}
             <button class="btn btn-primary outline" name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">{% trans "start over" %}</button>
             <button class="btn btn-primary outline" name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">{% trans "previous" %}</button>
@@ -46,17 +48,9 @@
         {% if wizard.steps.current == wizard.steps.last %}
             <button class="btn btn-primary outline" name="submit" type="submit" value="{% trans "submit" %}">{% trans "submit" %}</button>
         {% else %}
-            <button class="btn btn-primary outline" name="wizard_goto_step" type="submit" value="{{ wizard.steps.next }}">{% trans "next" %}</button>
+            <button class="btn btn-primary outline" name="submit" type="submit" value="{% trans "submit" %}">{% trans "next" %}</button>
         {% endif %}
-    </form>
-
-    <p></p>
-    <h2>{{ my_name }}</h2>
-    <h2>{{ greeting }}</h2>
-    <ul>
-        {% for item in a_list %}
-        <li>{{ item }}</li>
-        {% endfor %}
-    </ul>
+        </form>
     </div>
+
 {% endblock %}

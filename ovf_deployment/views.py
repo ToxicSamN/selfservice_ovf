@@ -9,7 +9,7 @@ from ovf_deployment.quotes import QUOTES
 from ovf_deployment.forms import DynamicForm, InitialForm
 from ovf_deployment.log.setup import addClassLogger
 from django.template.defaulttags import register
-from formtools.wizard.views import SessionWizardView
+from formtools.wizard.views import SessionWizardView, CookieWizardView
 from ovf_deployment.forms import InitialForm, EulaForm, NameFolderTreeForm
 
 
@@ -24,7 +24,6 @@ def get_item(dictionary, key):
 @addClassLogger
 class WizardView(SessionWizardView):
     template_name = 'ovf_deployment/wizard.html'
-    form_list = [InitialForm, EulaForm, NameFolderTreeForm]
 
     def done(self, form_list, **kwargs):
         # self.__log.debug('Done')

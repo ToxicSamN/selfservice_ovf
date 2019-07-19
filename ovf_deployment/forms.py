@@ -29,7 +29,7 @@ class EulaForm(forms.Form):
 
 # @addClassLogger
 class NameFolderTreeForm(forms.Form):
-    name = forms.CharField(max_length=100)
+    eula2 = forms.CharField(max_length=100)
 
 
 # @addClassLogger
